@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="icon" type="image/png" href="assets/icon.png" />
-  <title>Task Vectors are Cross-Modal</title>
-  <meta property="og:title" content="Task Vectors are Cross-Modal">
+  <title>Vision-Language Models Create Cross-Modal Task Representations</title>
+  <meta property="og:title" content="Vision-Language Models Create Cross-Modal Task Representations">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://task-vectors-are-cross-modal.github.io">
+  <meta property="og:url" content="https://vlm-cross-modal-reps.github.io">
   <meta name="description" content="Task representations in VLMs are consistent across modality (text, image) and specification (example, instruction).">
-  <meta name="keywords" content="cross-modal task vectors, cross-modal, task vectors, multimodal, vision and language models">
+  <meta name="keywords" content="vision-language models, multimodal models, task vectors, function vectors, in-context learning, interpretability">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQ2WVP2RSN"></script>
@@ -41,10 +41,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">Task Vectors are Cross-Modal</h1>
+          <h1 class="title is-2 publication-title">Vision-Language Models Create Cross-Modal Task Representations</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://people.eecs.berkeley.edu/~graceluo" target="_blank">Grace Luo</a>
+              <a href="https://graceluo.net" target="_blank">Grace Luo</a>
             </span>
             <span class="author-block">
               <a href="http://people.eecs.berkeley.edu/~trevor" target="_blank">Trevor Darrell</a>
@@ -56,11 +56,15 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block">UC Berkeley</span>
           </div>
+          <div class="is-size-5 publication-authors">
+            <br>
+            <span class="author-block"><b>ICML 2025</b></span>
+          </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2410.22330" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
@@ -68,7 +72,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/g-luo/task_vectors_are_cross_modal" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/g-luo/vlm-cross-modal-reps" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
@@ -87,7 +91,8 @@
   <div class="container is-max-desktop">
     <div class="is-centered has-text-centered">
       <p>
-        <b>TLDR:</b> Task representations in VLMs are consistent across modality (text, image) and specification (example, instruction).
+        <b>TLDR:</b> Task representations in VLMs are consistent across modality (text, image) and specification (example, instruction).<br>
+        <i>Previous Title: Task Vectors are Cross-Modal</i>
       </p>
       <br>
       <div class="max-width-content">
@@ -112,7 +117,7 @@
         <h2 class="title is-4">Abstract</h2>
         <div class="content has-text-left">
           <p>
-            We investigate the internal representations of vision-and-language models (VLMs) and how they encode task representations. We consider tasks specified through examples or instructions, using either text or image inputs. Surprisingly, we find that conceptually similar tasks are mapped to similar task vector representations, regardless of how they are specified. Our findings suggest that to output answers, tokens in VLMs undergo three distinct phases: input, task, and answer, a process which is consistent across different modalities and specifications. The task vectors we identify in VLMs are general enough to be derived in one modality (e.g., text) and transferred to another (e.g., image). Additionally, we find that ensembling exemplar and instruction based task vectors produce better task representations. Taken together, these insights shed light on the underlying mechanisms of VLMs, particularly their ability to represent tasks in a shared manner across different modalities and task specifications.
+            Autoregressive vision-language models (VLMs) can handle many tasks within a single model, yet the representations that enable this capability remain opaque. We find that VLMs align conceptually equivalent inputs into a shared task vector, which is invariant to modality (text, image) and format (examples, instruction), and may simplify VLM processing. We measure this alignment via cross-modal transfer--the ability of a task vector derived in one modality to trigger the correct generation in another--on a range of tasks and model architectures. Although the task vector is highly compressed, we find that this single vector outperforms prompting the model with the full task information, unique to this cross-modal case. Furthermore, we show that task vectors can be transferred from a base language model to its fine-tuned vision-language counterpart, and that they can be derived solely from instructions without the need for examples. Taken together, our findings shed light on how VLMs internally process task information, and how they map different modalities into common semantic representations.
           </p>
         </div>
       </div>
@@ -126,7 +131,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-4">What is a task vector?</h2>
+        <h2 class="title is-4">What are task representations?</h2>
         <div class="max-width-content">
           <video class="max-width-results" id="approach" muted playsinline onclick="playVideo('approach')">
             <source src="assets/approach.m4v" type="video/mp4">
@@ -348,58 +353,6 @@
 
 <hr>
 <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="max-width-content">
-          <h2 class="title is-4 is-centered has-text-centered">
-            Qualitative Examples
-          </h2>
-          <div id="qualitative" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="carousel-card">
-                  <img src="assets/qualitative_examples/text_icl.png">
-                  <div class="content has-text-left carousel-description">
-                    <p>
-                      <b>Text ICL Examples + Image Query.</b> Few-shot prompting with text ICL often regurgitates the input, whereas cross-modal patching successfully performs the task (Text ICL xBase vs. xPatch). Compared with images, text examples also consume less memory and are easy to curate.
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="carousel-card">
-                  <img src="assets/qualitative_examples/instruction.png">
-                  <div class="content has-text-left carousel-description">
-                    <p>
-                      <b>Instruction + Image Query.</b> Task vectors can not only be instantiated via examples but also brief instructions. Ensembling instruction-based vectors with exemplar-based vectors can reduce the number of input-output examples needed to achieve the same task accuracy.
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="carousel-card">
-                  <img src="assets/qualitative_examples/image_icl.png">
-                  <div class="content has-text-left carousel-description">
-                    <p>
-                      <b>Image ICL Examples + Text Query.</b> When transferring from image to text, cross-modal patching can also be helpful over few-show prompting (Image ICL xPatch vs. xBase). However, this benefit is better observed in tasks involving dense text descriptions over our six constructed tasks.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#qualitative" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </a>
-            <a class="carousel-control-next" href="#qualitative" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr>
-<section class="section">
   <div class="container is-max-desktop content">
     <h2 class="title is-4">Relevant Readings</h2>
     <p>
@@ -432,15 +385,15 @@
     </ul>
     <h2 class="title is-4">Acknowledgements</h2>
     <p>
-      We would like to thank Jiahai Feng, Stephanie Fu, Alexander Pan, and Alberto Hojel for helpful discussions and feedback on the paper.
+      We would like to thank Jiahai Feng, Stephanie Fu, Alexander Pan, Alberto Hojel, Lisa Dunlap, Chung Min Kim, Brent Yi, Candace Ross, and Koustuv Sinha for helpful discussions and feedback on the paper.
     </p>
     <h2 class="title is-4">BibTeX</h2>
     <pre><code>
-    @article{luo2024tvacm,
-      title={Task Vectors are Cross-Modal}, 
+    @inproceedings{luo2025vlm,
+      title={Vision-Language Models Create Cross-Modal Task Representations}, 
       author={Grace Luo and Trevor Darrell and Amir Bar},
-      journal={arXiv preprint arXiv:2410.22330}
-      year={2024}
+      booktitle={ICML},
+      year={2025}
     }
     </code></pre>
   </div>
