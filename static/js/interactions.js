@@ -3,7 +3,7 @@ function playVideo(id) {
   video.play();
 }
 
-function changeVideo(id) {
+function changeMedia(id, ext) {
   const selectParent = document.getElementById('select-' + id);
   if (selectParent === null) {
       return ;
@@ -14,15 +14,24 @@ function changeVideo(id) {
   path0 = path0.split(/[\s-]+/)[0] || '';
   path1 = path1.textContent.trim().toLowerCase();
 
-  const video = document.getElementById(id);
-  const videoSrc = video.querySelector('source').src;
-  const videoPath = videoSrc.split("/");
-  const videoBase = videoPath[videoPath.length-1].replace(".m4v", "").split("_");
-  let newVideoPath = videoPath.slice(0, -1).join("/") + "/";
+  const media = document.getElementById(id);
+  let mediaSrc;
+  if (media.tagName === 'VIDEO') {
+    mediaSrc = media.querySelector('source').src;
+  } else {
+    mediaSrc = media.src;
+  }
+  
+  const mediaPath = mediaSrc.split("/");
+  const videoBase = mediaPath[mediaPath.length-1].replace(ext, "").split("_");
+  let newmediaPath = mediaPath.slice(0, -1).join("/") + "/";
 
-  newVideoPath += path0 + "_" + path1 + ".m4v";
-  video.src = newVideoPath;
-  video.load();
+  newmediaPath += path0 + "_" + path1 + "." + ext;
+  media.src = newmediaPath;
+  
+  if (media.tagName === 'VIDEO') {
+    media.load();
+  }
 }
 
 function showTaskRow(id) {

@@ -35,3 +35,20 @@
   display: inline-block;
   margin: 0 5px 0 5px;
 }
+
+.finding-box {
+  background-color: #fff2d9ff;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: "Georgia", serif;
+  font-size: 1.1em;
+  max-width: 600px;
+  line-height: 1.4;
+  text-align: left;
+  display: inline-block;
+}
+
+.method-setting {
+  font-family: "Georgia", serif;
+}
